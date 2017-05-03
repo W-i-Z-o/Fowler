@@ -1,15 +1,18 @@
 package main;
 class Rental {
-    private Movie movie;
-    private int daysRented;
-    public Rental(Movie newmovie, int newdaysRented) {
-        movie = newmovie;
-        daysRented = newdaysRented;
+    private Movie _movie;
+    private int _daysRented;
+
+    public Rental(Movie movie, int daysRented) {
+        _movie = movie;
+        _daysRented = daysRented;
     }
+
     public int getDaysRented() {
-        return daysRented;
+        return _daysRented;
     }
+
     public Movie getMovie() {
-        return movie;
+        return _movie;
     }
 }
