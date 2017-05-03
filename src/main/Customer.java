@@ -16,6 +16,10 @@ public class Customer {
         rentals.add(arg);
     }
 
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
     public String getName() {
         return name;
     };
