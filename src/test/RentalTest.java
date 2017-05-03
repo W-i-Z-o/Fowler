@@ -29,4 +29,9 @@ public class RentalTest {
         assertEquals(movie, rental.getMovie());
     }
 
+    @Test
+    public void testGetCharge() {
+        assertEquals(9.0, rental.getCharge(), 0);
+    }
+
 }
