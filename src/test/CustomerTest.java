@@ -40,7 +40,15 @@ public class CustomerTest {
 
     @Test
     public void testStatement() {
-        fail("Not Implemented yet!");
+        customer.addRental(rental);
+        String expectedStatement = "Rental Record for Paul\n" +
+                "\tFight Club\t9.0\n" + "Amount owed is 9.0\n" + "You earned 2 frequent renter points";
+        assertEquals(expectedStatement, customer.statement());
+
+        customer.addRental(new Rental(new Movie("movie1", 2), 10));
+        expectedStatement = "Rental Record for Paul\n" + "\tFight Club\t9.0\n" + "\tmovie1\t12.0\n"
+                + "Amount owed is 21.0\n" + "You earned 3 frequent renter points";
+        assertEquals(expectedStatement, customer.statement());
     }
 
 }
