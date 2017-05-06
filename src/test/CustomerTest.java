@@ -42,14 +42,37 @@ public class CustomerTest {
     @Test
     public void testStatement() {
         customer.addRental(rental);
-        String expectedStatement = "Rental Record for Paul\n" +
-                "\tFight Club\t9.0\n" + "Amount owed is 9.0\n" + "You earned 2 frequent renter points";
-        assertEquals(expectedStatement, customer.statement());
+        String expectedStatement = "Rental Record for Paul\n";
+        expectedStatement += "\tFight Club\t9.0\n";
+        expectedStatement += "Amount owed is 9.0\n";
+        expectedStatement += "You earned 2 frequent renter points";
+        assertEquals(expectedStatement, customer.getStatement());
 
         customer.addRental(new Rental(new Movie("movie1", 2), 10));
-        expectedStatement = "Rental Record for Paul\n" + "\tFight Club\t9.0\n" + "\tmovie1\t12.0\n"
-                + "Amount owed is 21.0\n" + "You earned 3 frequent renter points";
-        assertEquals(expectedStatement, customer.statement());
+        expectedStatement = "Rental Record for Paul\n";
+        expectedStatement += "\tFight Club\t9.0\n";
+        expectedStatement += "\tmovie1\t12.0\n";
+        expectedStatement += "Amount owed is 21.0\n";
+        expectedStatement += "You earned 3 frequent renter points";
+        assertEquals(expectedStatement, customer.getStatement());
+    }
+
+    @Test
+    public void testHtmlStatement() {
+        customer.addRental(rental);
+        String expectedStatement = "<H1>Rentals for <EM>Paul</EM></H1>\n";
+        expectedStatement += "<P>Fight Club: 9.0</BR>\n";
+        expectedStatement += "Amount owed is <EM>9.0</EM></P>\n";
+        expectedStatement += "<P>You earned <EM>2</EM> frequent renter points</P>";
+        assertEquals(expectedStatement, customer.getHtmlStatement());
+
+        customer.addRental(new Rental(new Movie("movie1", 2), 10));
+        expectedStatement = "<H1>Rentals for <EM>Paul</EM></H1>\n";
+        expectedStatement += "<P>Fight Club: 9.0</BR>\n";
+        expectedStatement += "movie1: 12.0</BR>\n";
+        expectedStatement += "Amount owed is <EM>21.0</EM></P>\n";
+        expectedStatement += "<P>You earned <EM>3</EM> frequent renter points</P>";
+        assertEquals(expectedStatement, customer.getHtmlStatement());
     }
 
 }

@@ -24,7 +24,7 @@ public class Customer {
         return name;
     };
 
-    public String statement() {
+    public String getStatement() {
         String result = "Rental Record for " + getName() + "\n";
         for (Rental each : rentals) {
             // show figures for this rental
@@ -42,6 +42,22 @@ public class Customer {
 
     private int getTotalFrequentRenterPoints() {
         return rentals.stream().mapToInt(rental -> rental.getFrequentRenterPoints()).sum();
+    }
+
+    public String getHtmlStatement() {
+        String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1>\n" + "<P>";
+
+        for (Rental each : rentals) {
+            // show figures for this rental
+            result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "</BR>\n";
+        }
+
+        // add footer lines
+        result += "Amount owed is <EM>" + String.valueOf(getTotalCharge()) + "</EM></P>\n";
+        result += "<P>You earned <EM>" + String.valueOf(getTotalFrequentRenterPoints())
+                + "</EM> frequent renter points</P>";
+
+        return result;
     }
 }
     
