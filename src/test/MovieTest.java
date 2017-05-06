@@ -10,7 +10,7 @@ import main.Movie;
 public class MovieTest {
 
     private static final String MOVIE_NAME = "Fight Club";
-    private static final int PRICE_CODE = 1;
+    private static final int PRICE_CODE = Movie.NEW_RELEASE;
 
     private Movie movie;
 
@@ -27,8 +27,8 @@ public class MovieTest {
 
     @Test
     public void changePriceCode() {
-        movie.setPriceCode(2);
-        assertEquals(2, movie.getPriceCode());
+        movie.setPriceCode(Movie.REGULAR);
+        assertEquals(Movie.REGULAR, movie.getPriceCode());
     }
 
 }
