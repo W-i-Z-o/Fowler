@@ -1,33 +1,28 @@
 package main;
 public class Movie {
-    public static final int CHILDRENS = 2;
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
     private String title;
-    private Price price;
+    private MovieState state;
 
-    public Movie(String title, int priceCode) {
+    public Movie(String title, AllMovieStates state) {
         this.title = title;
-        setPriceCode(priceCode);
+        setState(state);
     }
 
-    public int getPriceCode() {
-        return price.getPriceCode();
+    public AllMovieStates getState() {
+        return state.getState();
     }
 
-    public void setPriceCode(int priceCode) {
-        switch (priceCode) {
+    public void setState(AllMovieStates state) {
+        switch (state) {
         case REGULAR:
-            price = new RegularPrice();
+            this.state = new RegularState();
             break;
         case CHILDRENS:
-            price = new ChildrensPrice();
+            this.state = new ChildrensState();
             break;
         case NEW_RELEASE:
-            price = new NewReleasePrice();
+            this.state = new NewReleaseState();
             break;
-        default:
-            throw new IllegalArgumentException("Incorrect Price Code");
         }
     }
 
@@ -36,10 +31,10 @@ public class Movie {
     }
 
     public double getCharge(int daysRented) {
-        return price.getCharge(daysRented);
+        return state.getCharge(daysRented);
     }
 
     public int getFrequentRenterPoints(int daysRented) {
-        return price.getFrequentRenterPoints(daysRented);
+        return state.getFrequentRenterPoints(daysRented);
     }
 }

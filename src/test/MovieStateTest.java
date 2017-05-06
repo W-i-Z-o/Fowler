@@ -7,11 +7,12 @@ import org.junit.Test;
 
 import main.Movie;
 import main.Rental;
+import main.AllMovieStates;
 
-public class PriceTest {
+public class MovieStateTest {
 
     private static final String MOVIE_NAME = "Fight Club";
-    private static final int PRICE_CODE = Movie.NEW_RELEASE;
+    private static final AllMovieStates STATE_CODE = AllMovieStates.NEW_RELEASE;
     private static final int DAYS_RENTED = 3;
 
     private Rental rental;
@@ -19,24 +20,19 @@ public class PriceTest {
 
     @Before
     public void resetRental() {
-        movie = new Movie(MOVIE_NAME, PRICE_CODE);
+        movie = new Movie(MOVIE_NAME, STATE_CODE);
         rental = new Rental(movie, DAYS_RENTED);
     }
 
     @Test
     public void testPriceCode() {
-        assertEquals(Movie.NEW_RELEASE, movie.getPriceCode());
+        assertEquals(AllMovieStates.NEW_RELEASE, movie.getState());
 
-        movie.setPriceCode(Movie.CHILDRENS);
-        assertEquals(Movie.CHILDRENS, movie.getPriceCode());
+        movie.setState(AllMovieStates.CHILDRENS);
+        assertEquals(AllMovieStates.CHILDRENS, movie.getState());
 
-        movie.setPriceCode(Movie.REGULAR);
-        assertEquals(Movie.REGULAR, movie.getPriceCode());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testIllegalPriceCode() {
-        movie.setPriceCode(99);
+        movie.setState(AllMovieStates.REGULAR);
+        assertEquals(AllMovieStates.REGULAR, movie.getState());
     }
 
     @Test
@@ -47,11 +43,11 @@ public class PriceTest {
         assertEquals(1, rental.getFrequentRenterPoints());
 
         resetRental();
-        movie.setPriceCode(Movie.CHILDRENS);
+        movie.setState(AllMovieStates.CHILDRENS);
         assertEquals(1, rental.getFrequentRenterPoints());
 
         resetRental();
-        movie.setPriceCode(Movie.REGULAR);
+        movie.setState(AllMovieStates.REGULAR);
         assertEquals(1, rental.getFrequentRenterPoints());
     }
 }

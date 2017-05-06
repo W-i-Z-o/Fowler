@@ -1,10 +1,10 @@
 package main;
 
-public class ChildrensPrice extends Price {
+public class ChildrensState extends MovieState {
 
     @Override
-    int getPriceCode() {
-        return Movie.CHILDRENS;
+    public AllMovieStates getState() {
+        return AllMovieStates.CHILDRENS;
     }
 
     @Override

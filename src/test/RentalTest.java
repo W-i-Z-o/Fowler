@@ -7,11 +7,12 @@ import org.junit.Test;
 
 import main.Movie;
 import main.Rental;
+import main.AllMovieStates;
 
 public class RentalTest {
 
     private static final String MOVIE_NAME = "Fight Club";
-    private static final int PRICE_CODE = 1;
+    private static final AllMovieStates STATE_CODE = AllMovieStates.NEW_RELEASE;
     private static final int DAYS_RENTED = 3;
 
     private Rental rental;
@@ -19,7 +20,7 @@ public class RentalTest {
 
     @Before
     public void resetRental() {
-        movie = new Movie(MOVIE_NAME, PRICE_CODE);
+        movie = new Movie(MOVIE_NAME, STATE_CODE);
         rental = new Rental(movie, DAYS_RENTED);
     }
 
@@ -38,7 +39,7 @@ public class RentalTest {
     public void testGetFrequentRenterPoints() {
         assertEquals(2, rental.getFrequentRenterPoints());
 
-        movie.setPriceCode(0);
+        movie.setState(AllMovieStates.REGULAR);
         assertEquals(1, rental.getFrequentRenterPoints());
     }
 }

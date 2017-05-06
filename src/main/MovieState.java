@@ -1,7 +1,8 @@
 package main;
 
-public abstract class Price {
-    abstract int getPriceCode();
+public abstract class MovieState {
+
+    abstract AllMovieStates getState();
 
     abstract public double getCharge(int daysRented);
 

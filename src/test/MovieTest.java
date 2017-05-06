@@ -6,29 +6,30 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.Movie;
+import main.AllMovieStates;
 
 public class MovieTest {
 
     private static final String MOVIE_NAME = "Fight Club";
-    private static final int PRICE_CODE = Movie.NEW_RELEASE;
+    private static final AllMovieStates STATE_CODE = AllMovieStates.NEW_RELEASE;
 
     private Movie movie;
 
     @Before
     public void resetMovie() {
-        movie = new Movie(MOVIE_NAME, PRICE_CODE);
+        movie = new Movie(MOVIE_NAME, STATE_CODE);
     }
 
     @Test
     public void testNewMovie() {
         assertEquals(MOVIE_NAME, movie.getTitle());
-        assertEquals(PRICE_CODE, movie.getPriceCode());
+        assertEquals(STATE_CODE, movie.getState());
     }
 
     @Test
     public void changePriceCode() {
-        movie.setPriceCode(Movie.REGULAR);
-        assertEquals(Movie.REGULAR, movie.getPriceCode());
+        movie.setState(AllMovieStates.REGULAR);
+        assertEquals(AllMovieStates.REGULAR, movie.getState());
     }
 
 }
